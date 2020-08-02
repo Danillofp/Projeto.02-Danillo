@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace Projeto.Escola.Entity
 {
-    public class Professor
+    public class Professor : Funcionario
     {
-        private int idProfessor;
         private string disciplina;
-        private int idFuncionario;
+
+        public Professor()
+        {
+
+        }
+
+        public Professor(string nome, double salario, Endereco endereco, string disciplina)
+            : base(nome, salario, endereco)
+        {
+            Disciplina = disciplina;
+        }
 
         public string Disciplina { get => disciplina; set => disciplina = value; }
-        public int IdFuncionario { get => idFuncionario; set => idFuncionario = value; }
-        public int IdProfessor { get => idProfessor; set => idProfessor = value; }
     }
 }
