@@ -1,4 +1,4 @@
-﻿create table Endereco (
+create table Endereco (
 	IdEndereco int identity(1,1) primary key,
 	Rua nvarchar(50) not null,
 	Numero int not null,
@@ -6,19 +6,13 @@
 	Complemento nvarchar(50) not null
 );
 
-create table Funcionario (
+create table Professor (
 	IdFuncionario int identity(1,1) primary key,
 	Nome nvarchar(50) not null,
 	Salario decimal(18,2) not null,
 	IdEndereco int not null,
-	foreign key (IdEndereco) references Endereco(IdEndereco)
-);
-
-create table Professor (
-	IdProfessor int identity(1,1) primary key,
 	Disciplina nvarchar(20) not null,
-	IdFuncionario int not null,
-	foreign key (IdFuncionario) references Funcionario(IdFuncionario)
+	foreign key (IdEndereco) references Endereco(IdEndereco)
 );
 
 create table Turma (
@@ -33,4 +27,5 @@ create table Aluno (
 	Matricula nvarchar(20) not null,
 	foreign key (IdAluno) references Aluno(IdAluno)
 )
+
 
