@@ -1,4 +1,4 @@
-﻿using Projeto.Escola.Entity;
+using Projeto.Escola.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -22,7 +22,7 @@ namespace Projeto.Escola.Repository
         public void Insert(Endereco endereco)
         {
             string query = "insert into Endereco values(@Rua, @Numero, "
-                + "@Cep, @Complemento)";
+                + "@Cep, @Complemento);SELECT CAST(scope_identity() AS int)";
 
             using(SqlConnection con = new SqlConnection(connectionString))
             {
@@ -32,7 +32,7 @@ namespace Projeto.Escola.Repository
                 cmd.Parameters.AddWithValue("@Numero", endereco.Numero);
                 cmd.Parameters.AddWithValue("@Cep", endereco.Cep);
                 cmd.Parameters.AddWithValue("@Complemento", endereco.Complemento);
-                cmd.ExecuteNonQuery();
+                endereco.IdEndereco = Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
@@ -51,6 +51,7 @@ namespace Projeto.Escola.Repository
                 while(reader.Read())
                 {
                     Endereco endereco = new Endereco();
+                    endereco.IdEndereco = Convert.ToInt32(reader["IdEndereco"]);
                     endereco.Rua = Convert.ToString(reader["Rua"]);
                     endereco.Numero = Convert.ToInt32(reader["Numero"]);
                     endereco.Cep = Convert.ToString(reader["Cep"]);
