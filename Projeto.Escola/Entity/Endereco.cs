@@ -14,10 +14,23 @@ namespace Projeto.Escola.Entity
         private string cep;
         private string complemento;
 
+        public Endereco()
+        {
+
+        }
+
+        public Endereco(string rua, int numero, string cep, string complemento)
+        {
+            Rua = rua;
+            Numero = numero;
+            Cep = cep;
+            Complemento = complemento;
+        }
+
+        public int IdEndereco { get => idEndereco; set => idEndereco = value; }
         public string Rua { get => rua; set => rua = value; }
         public int Numero { get => numero; set => numero = value; }
         public string Cep { get => cep; set => cep = value; }
         public string Complemento { get => complemento; set => complemento = value; }
-        public int IdEndereco { get => idEndereco; set => idEndereco = value; }
     }
 }
