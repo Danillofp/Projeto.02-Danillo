@@ -13,9 +13,21 @@ namespace Projeto.Escola.Entity
         private double salario;
         private Endereco endereco;
 
+        public Funcionario()
+        {
+
+        }
+
+        public Funcionario(string nome, double salario, Endereco endereco)
+        {
+            Nome = nome;
+            Salario = salario;
+            Endereco = endereco;
+        }
+
+        public int IdFuncionario { get => idFuncionario; set => idFuncionario = value; }
         public string Nome { get => nome; set => nome = value; }
         public double Salario { get => salario; set => salario = value; }
         public Endereco Endereco { get => endereco; set => endereco = value; }
-        public int IdFuncionario { get => idFuncionario; set => idFuncionario = value; }
     }
 }
