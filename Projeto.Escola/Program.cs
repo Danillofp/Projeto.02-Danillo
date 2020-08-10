@@ -17,9 +17,10 @@ namespace Projeto.Escola
             obj.Numero = 4020;
             obj.Cep = "H1R1H8";
             obj.Complemento = "Proximo ao metro Cadillac";
+            obj.IdEndereco = 1;
 
             EnderecoRepository rep = new EnderecoRepository();
-            rep.Insert(obj);
+            //rep.Insert(obj);
             Console.WriteLine("Endereço gravado com sucesso!");
 
             List<Endereco> lista = rep.SelectAll();
@@ -32,14 +33,22 @@ namespace Projeto.Escola
                 Console.WriteLine("*********************************");
             }
 
-            Funcionario funcionario = new Funcionario();
-            funcionario.Nome = "Danillo";
-            funcionario.Salario = 30000;
-            funcionario.Endereco = obj; 
+            Professor professor = new Professor("Luka", 20.00, obj, "programacao");
+            Professor professor1 = new Professor("Joao", 15.00, obj, "matematica");
 
-            FuncionarioRepository repo = new FuncionarioRepository();
-            repo.Insert(funcionario);
-            Console.WriteLine("Funcionario gravado com sucesso!");
+
+            ProfessorRepository profrep = new ProfessorRepository();
+            profrep.Insert(professor1);
+
+            List<Professor> proflista = profrep.SelectAll();
+            foreach (var item in proflista)
+            {
+                Console.WriteLine("Nome: " + item.Nome);
+                Console.WriteLine("Salario: " + item.Salario);
+                Console.WriteLine("Endereco: " + item.Endereco.Rua + "\n" + item.Endereco.Numero);
+                Console.WriteLine("Disciplina: " + item.Disciplina);
+                Console.WriteLine("*********************************");
+            }
 
             Console.ReadKey();
         }
